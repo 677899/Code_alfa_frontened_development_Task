@@ -1,139 +1,44 @@
-// Get display screen
-const display = document.getElementById("display");
+// ================= CONTACT FORM =================
+
+const contactForm =
+    document.getElementById("contactForm");
 
 
-// Add value to display
-function addValue(value) {
+contactForm.addEventListener("submit", function(event) {
 
-    // If display is 0, replace it
-    if (display.value === "0") {
-
-        display.value = value;
-
-    } else {
-
-        display.value += value;
-
-    }
-}
+    // Stop page from refreshing
+    event.preventDefault();
 
 
-// Clear the display
-function clearDisplay() {
-
-    display.value = "0";
-
-}
+    // Get user information
+    const name =
+        document.getElementById("name").value;
 
 
-// Delete last character
-function deleteLast() {
-
-    if (display.value.length > 1) {
-
-        display.value =
-            display.value.slice(0, -1);
-
-    } else {
-
-        display.value = "0";
-
-    }
-
-}
+    const email =
+        document.getElementById("email").value;
 
 
-// Calculate result
-function calculate() {
-
-    try {
-
-        // Get expression
-        let expression = display.value;
-
-        // Calculate
-        let result = eval(expression);
-
-        // Check invalid result
-        if (!isFinite(result)) {
-
-            display.value = "Error";
-
-        } else {
-
-            display.value = result;
-
-        }
-
-    } catch (error) {
-
-        display.value = "Error";
-
-    }
-
-}
+    // Show message
+    alert(
+        "Thank you, " + name +
+        "! Your message has been received."
+    );
 
 
-// Keyboard support
-document.addEventListener("keydown", function(event) {
-
-    const key = event.key;
-
-
-    // Numbers
-    if (
-        key >= "0" &&
-        key <= "9"
-    ) {
-
-        addValue(key);
-
-    }
-
-
-    // Decimal
-    else if (key === ".") {
-
-        addValue(".");
-
-    }
-
-
-    // Operators
-    else if (
-        key === "+" ||
-        key === "-" ||
-        key === "*" ||
-        key === "/" ||
-        key === "%"
-    ) {
-
-        addValue(key);
-
-    }
-
-
-    // Enter = Calculate
-    else if (key === "Enter") {
-
-        calculate();
-
-    }
-
-
-    // Backspace = Delete
-    else if (key === "Backspace") {
-
-        deleteLast();
-
-    }
-
-
-    // Escape = Clear
-    else if (key === "Escape") {
-
-        clearDisplay();
-
-    }
+    // Clear form
+    contactForm.reset();
 
 });
+
+
+// ================= RESUME =================
+
+function downloadResume() {
+
+    alert(
+        "Please add your actual resume PDF file " +
+        "and connect it to this button."
+    );
+
+}
