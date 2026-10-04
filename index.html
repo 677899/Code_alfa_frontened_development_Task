@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Image Gallery</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>📸 My Image Gallery</h1>
+        <p>Explore beautiful images</p>
+    </header>
+
+
+    <!-- Category Buttons -->
+    <section class="filters">
+
+        <button class="filter-btn active" data-category="all">
+            All
+        </button>
+
+        <button class="filter-btn" data-category="nature">
+            Nature
+        </button>
+
+        <button class="filter-btn" data-category="city">
+            Cities
+        </button>
+
+        <button class="filter-btn" data-category="animals">
+            Animals
+        </button>
+
+    </section>
+
+
+    <!-- Gallery -->
+    <main class="gallery">
+
+        <div class="gallery-item" data-category="nature">
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
+                 alt="Nature">
+            <div class="overlay">
+                <h3>Beautiful Nature</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="city">
+            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df"
+                 alt="City">
+            <div class="overlay">
+                <h3>City View</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="animals">
+            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d"
+                 alt="Lion">
+            <div class="overlay">
+                <h3>Wild Animal</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="nature">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+                 alt="Forest">
+            <div class="overlay">
+                <h3>Green Forest</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="city">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785"
+                 alt="City Buildings">
+            <div class="overlay">
+                <h3>Modern City</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="animals">
+            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d"
+                 alt="Dog">
+            <div class="overlay">
+                <h3>Cute Dog</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="nature">
+            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b"
+                 alt="Mountain">
+            <div class="overlay">
+                <h3>Mountain Landscape</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+
+        <div class="gallery-item" data-category="animals">
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a"
+                 alt="Dog">
+            <div class="overlay">
+                <h3>Happy Dog</h3>
+                <button class="view-btn">View Image</button>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+
+        <button class="close" id="close">
+            &times;
+        </button>
+
+        <button class="prev" id="prev">
+            &#10094;
+        </button>
+
+        <img id="lightbox-img" src="" alt="Large Image">
+
+        <button class="next" id="next">
+            &#10095;
+        </button>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Image Gallery | Designed with HTML, CSS & JavaScript</p>
+        <p>Ghulam Mustafa Senior Frontened develpor</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
