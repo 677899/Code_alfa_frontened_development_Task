@@ -1,208 +1,139 @@
-// Get all gallery items
-const galleryItems = document.querySelectorAll(".gallery-item");
-
-// Get lightbox elements
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-const closeBtn = document.getElementById("close");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
+// Get display screen
+const display = document.getElementById("display");
 
 
-// Store current image number
-let currentIndex = 0;
+// Add value to display
+function addValue(value) {
 
+    // If display is 0, replace it
+    if (display.value === "0") {
 
-// Create array of images
-let images = [];
+        display.value = value;
 
+    } else {
 
-// Add all gallery images to array
-galleryItems.forEach(function(item) {
+        display.value += value;
 
-    const image = item.querySelector("img");
-
-    images.push(image.src);
-
-});
-
-
-// Open lightbox
-function openLightbox(index) {
-
-    currentIndex = index;
-
-    lightboxImg.src = images[currentIndex];
-
-    lightbox.classList.add("show");
-
-}
-
-
-// Close lightbox
-function closeLightbox() {
-
-    lightbox.classList.remove("show");
-
-}
-
-
-// Next image
-function nextImage() {
-
-    currentIndex++;
-
-    if (currentIndex >= images.length) {
-        currentIndex = 0;
     }
+}
 
-    lightboxImg.src = images[currentIndex];
+
+// Clear the display
+function clearDisplay() {
+
+    display.value = "0";
 
 }
 
 
-// Previous image
-function previousImage() {
+// Delete last character
+function deleteLast() {
 
-    currentIndex--;
+    if (display.value.length > 1) {
 
-    if (currentIndex < 0) {
-        currentIndex = images.length - 1;
-    }
+        display.value =
+            display.value.slice(0, -1);
 
-    lightboxImg.src = images[currentIndex];
+    } else {
 
-}
-
-
-// Add click event to gallery items
-galleryItems.forEach(function(item, index) {
-
-    item.addEventListener("click", function() {
-
-        openLightbox(index);
-
-    });
-
-});
-
-
-// Close button
-closeBtn.addEventListener("click", function() {
-
-    closeLightbox();
-
-});
-
-
-// Next button
-nextBtn.addEventListener("click", function() {
-
-    nextImage();
-
-});
-
-
-// Previous button
-prevBtn.addEventListener("click", function() {
-
-    previousImage();
-
-});
-
-
-// Close when clicking outside image
-lightbox.addEventListener("click", function(event) {
-
-    if (event.target === lightbox) {
-
-        closeLightbox();
+        display.value = "0";
 
     }
 
-});
+}
 
 
-// Keyboard navigation
+// Calculate result
+function calculate() {
+
+    try {
+
+        // Get expression
+        let expression = display.value;
+
+        // Calculate
+        let result = eval(expression);
+
+        // Check invalid result
+        if (!isFinite(result)) {
+
+            display.value = "Error";
+
+        } else {
+
+            display.value = result;
+
+        }
+
+    } catch (error) {
+
+        display.value = "Error";
+
+    }
+
+}
+
+
+// Keyboard support
 document.addEventListener("keydown", function(event) {
 
-    if (!lightbox.classList.contains("show")) {
-        return;
-    }
+    const key = event.key;
 
 
-    if (event.key === "ArrowRight") {
+    // Numbers
+    if (
+        key >= "0" &&
+        key <= "9"
+    ) {
 
-        nextImage();
-
-    }
-
-
-    if (event.key === "ArrowLeft") {
-
-        previousImage();
+        addValue(key);
 
     }
 
 
-    if (event.key === "Escape") {
+    // Decimal
+    else if (key === ".") {
 
-        closeLightbox();
+        addValue(".");
 
     }
 
-});
+
+    // Operators
+    else if (
+        key === "+" ||
+        key === "-" ||
+        key === "*" ||
+        key === "/" ||
+        key === "%"
+    ) {
+
+        addValue(key);
+
+    }
 
 
-// Category filtering
-const filterButtons =
-    document.querySelectorAll(".filter-btn");
+    // Enter = Calculate
+    else if (key === "Enter") {
+
+        calculate();
+
+    }
 
 
-filterButtons.forEach(function(button) {
+    // Backspace = Delete
+    else if (key === "Backspace") {
 
-    button.addEventListener("click", function() {
+        deleteLast();
 
-        // Remove active class
-        filterButtons.forEach(function(btn) {
-
-            btn.classList.remove("active");
-
-        });
+    }
 
 
-        // Add active class
-        button.classList.add("active");
+    // Escape = Clear
+    else if (key === "Escape") {
 
+        clearDisplay();
 
-        // Get selected category
-        const category =
-            button.getAttribute("data-category");
-
-
-        // Show/hide images
-        galleryItems.forEach(function(item) {
-
-            const itemCategory =
-                item.getAttribute("data-category");
-
-
-            if (
-                category === "all" ||
-                category === itemCategory
-            ) {
-
-                item.style.display = "block";
-
-            } else {
-
-                item.style.display = "none";
-
-            }
-
-        });
-
-    });
+    }
 
 });
